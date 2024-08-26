@@ -3,8 +3,7 @@ import { VoiceProvider } from "@humeai/voice-react";
 import Messages from "./Messages";
 import Controls from "./Controls";
 import StartCall from "./StartCall";
-import { ComponentRef, useRef, useEffect, useState } from "react";
-import { connectToEVI } from "@/utils/eviConnection";
+import { ComponentRef, useRef } from "react";
 
 export default function Chat({
   accessToken,
@@ -15,20 +14,6 @@ export default function Chat({
 }) {
   const timeout = useRef<number | null>(null);
   const ref = useRef<ComponentRef<typeof Messages> | null>(null);
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    const initializeEVI = async () => {
-      try {
-        const eviSocket = await connectToEVI(accessToken, configId);
-        setSocket(eviSocket);
-      } catch (error) {
-        console.error("Failed to connect to EVI:", error);
-      }
-    };
-
-    initializeEVI();
-  }, [accessToken, configId]);
 
   return (
     <div
@@ -38,7 +23,7 @@ export default function Chat({
     >
       <VoiceProvider
         auth={{ type: "accessToken", value: accessToken }}
-        socket={socket}
+        configId={configId}
         onMessage={() => {
           if (timeout.current) {
             window.clearTimeout(timeout.current);
