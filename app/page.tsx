@@ -6,19 +6,17 @@ const Chat = dynamic(() => import("@/components/Chat"), {
 });
 
 export default async function Page() {
-  const accessToken = await getHumeAccessToken();
-  if (!accessToken) {
-    throw new Error("Failed to get access token");
-  }
-
+  const apiKey = process.env.HUME_API_KEY;
+  const secretKey = process.env.HUME_SECRET_KEY;
   const configId = process.env.NEXT_PUBLIC_HUME_CONFIG_ID;
-  if (!configId) {
-    throw new Error("EVI config ID is not set");
+
+  if (!apiKey || !secretKey || !configId) {
+    throw new Error("Missing required environment variables");
   }
 
   return (
     <div className={"grow flex flex-col"}>
-      <Chat accessToken={accessToken} configId={configId} />
+      <Chat apiKey={apiKey} secretKey={secretKey} configId={configId} />
     </div>
   );
 }
