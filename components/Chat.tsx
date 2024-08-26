@@ -6,11 +6,16 @@ import StartCall from "./StartCall";
 import { ComponentRef, useRef, useEffect, useState } from "react";
 import { connectToEVI } from "../utils/eviConnection";
 
-export default function ClientComponent({
+export default function Chat({
   accessToken,
+  configId,
 }: {
   accessToken: string;
+  configId: string;
 }) {
+  // ... rest of the component
+}
+ {
   const timeout = useRef<number | null>(null);
   const ref = useRef<ComponentRef<typeof Messages> | null>(null);
   const [socket, setSocket] = useState(null);
