@@ -1,4 +1,4 @@
-import { HumeClient } from "@humeai/voice-react";
+import { HumeClient } from "@humeai/voice";
 
 export const connectToEVI = async (accessToken: string, configId: string) => {
   const client = new HumeClient({
