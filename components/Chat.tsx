@@ -4,7 +4,7 @@ import Messages from "./Messages";
 import Controls from "./Controls";
 import StartCall from "./StartCall";
 import { ComponentRef, useRef, useEffect, useState } from "react";
-import { connectToEVI } from "../utils/eviConnection";
+import { connectToEVI } from "@/utils/eviConnection";
 
 export default function Chat({
   accessToken,
@@ -13,20 +13,12 @@ export default function Chat({
   accessToken: string;
   configId: string;
 }) {
-  // ... rest of the component
-}
- {
   const timeout = useRef<number | null>(null);
   const ref = useRef<ComponentRef<typeof Messages> | null>(null);
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     const initializeEVI = async () => {
-      const configId = process.env.NEXT_PUBLIC_HUME_CONFIG_ID;
-      if (!configId) {
-        console.error("EVI config ID is not set");
-        return;
-      }
       try {
         const eviSocket = await connectToEVI(accessToken, configId);
         setSocket(eviSocket);
@@ -36,7 +28,7 @@ export default function Chat({
     };
 
     initializeEVI();
-  }, [accessToken]);
+  }, [accessToken, configId]);
 
   return (
     <div
