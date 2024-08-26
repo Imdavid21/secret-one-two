@@ -1,5 +1,4 @@
 "use client";
-
 import { useLayoutEffect, useState } from "react";
 import HumeLogo from "./logos/Hume";
 import { Button } from "./ui/button";
@@ -12,7 +11,6 @@ export const Nav = () => {
 
   useLayoutEffect(() => {
     const el = document.documentElement;
-
     if (el.classList.contains("dark")) {
       setIsDarkMode(true);
     } else {
@@ -47,7 +45,10 @@ export const Nav = () => {
           variant={"ghost"}
           className={"ml-auto flex items-center gap-1.5"}
         >
-    
+          <Github className={"size-4"} />
+          <span>GitHub</span>
+        </Button>
+        
         <Button
           onClick={toggleDark}
           variant={"ghost"}
@@ -66,5 +67,3 @@ export const Nav = () => {
     </div>
   );
 };
-
-      
