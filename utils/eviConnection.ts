@@ -1,8 +1,8 @@
 import { fetchAccessToken } from "@humeai/voice";
 
-export const connectToEVI = async (apiKey: string, secretKey: string, configId: string) => {
+export const connectToEVI = async (apiKey: string, clientSecret: string, configId: string) => {
   try {
-    const accessToken = await fetchAccessToken({ apiKey, secretKey });
+    const accessToken = await fetchAccessToken({ apiKey, clientSecret });
 
     if (!accessToken) {
       throw new Error("Failed to obtain access token");
