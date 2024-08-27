@@ -7,8 +7,8 @@ export default function HumeLogo(props: HumeLogoProps) {
     <img
       src="https://iili.io/dhQqfRe.th.png"
       alt="Logo"
-      width="106"
-      height="25"
+      width="1060"
+      height="250"
       {...props}
     />
   );
