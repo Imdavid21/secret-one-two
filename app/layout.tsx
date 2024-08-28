@@ -4,7 +4,6 @@ import { cn } from "@/utils";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Nav } from "@/components/Nav";
-import Sidebar from "@/components/Sidebar";
 
 export default function RootLayout({
   children,
