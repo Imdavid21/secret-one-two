@@ -7,20 +7,17 @@ import { Toggle } from "./ui/toggle";
 import MicFFT from "./MicFFT";
 import { cn } from "@/utils";
 
-// Define the type for the onEndCall prop, making it optional
-type ControlsProps = {
-  onEndCall?: () => void;
-};
-
-export default function Controls({ onEndCall }: ControlsProps) {
+export default function Controls() {
   const { disconnect, status, isMuted, unmute, mute, micFft } = useVoice();
 
   return (
     <div
-      className={cn(
-        "fixed bottom-0 left-0 w-full p-4 flex items-center justify-center",
-        "bg-gradient-to-t from-card via-card/90 to-card/0"
-      )}
+      className={
+        cn(
+          "fixed bottom-0 left-0 w-full p-4 flex items-center justify-center",
+          "bg-gradient-to-t from-card via-card/90 to-card/0",
+        )
+      }
     >
       <AnimatePresence>
         {status.value === "connected" ? (
@@ -66,9 +63,6 @@ export default function Controls({ onEndCall }: ControlsProps) {
               className={"flex items-center gap-1"}
               onClick={() => {
                 disconnect();
-                if (onEndCall) {
-                  onEndCall(); // Call the onEndCall function if it's provided
-                }
               }}
               variant={"destructive"}
             >
