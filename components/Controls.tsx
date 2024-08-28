@@ -7,9 +7,9 @@ import { Toggle } from "./ui/toggle";
 import MicFFT from "./MicFFT";
 import { cn } from "@/utils";
 
-// Define the type for the onEndCall prop
+// Define the type for the onEndCall prop, making it optional
 type ControlsProps = {
-  onEndCall: () => void;
+  onEndCall?: () => void;
 };
 
 export default function Controls({ onEndCall }: ControlsProps) {
@@ -66,7 +66,9 @@ export default function Controls({ onEndCall }: ControlsProps) {
               className={"flex items-center gap-1"}
               onClick={() => {
                 disconnect();
-                onEndCall(); // Call the onEndCall function when the call is ended
+                if (onEndCall) {
+                  onEndCall(); // Call the onEndCall function if it's provided
+                }
               }}
               variant={"destructive"}
             >
