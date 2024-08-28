@@ -26,10 +26,6 @@ export default function RootLayout({
         >
           <Nav />
           <div className="flex flex-1">
-            <Sidebar
-              userId={"some-user-id"}
-              onSelectSession={(session) => console.log(session)}
-            />
             <main className="flex-1 overflow-hidden">{children}</main>
           </div>
         </body>
